@@ -1,8 +1,12 @@
 package dev.manyroads.streams.examples;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Check if an array is sorted ascending
@@ -117,5 +121,35 @@ class Test8 {
         reverseElements2(twoDimArray);
         //reverseElements(twoDimArray);
         printMat(twoDimArray);
+    }
+}
+
+class Test9 {
+    static List<Integer> c(List<Integer> l1, List<Integer> l2) {
+        l1.addAll(l2);
+        l1.removeIf(i->i<0);
+        return l1;
+    }
+    public static List<Integer> concatPositiveNumbers(List<Integer> l1, List<Integer> l2) {
+        return Stream
+                .concat(l1.stream(), l2.stream())
+                .filter(x -> x > 0)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list1 = new ArrayList<>();
+        list1.add(-1);
+        list1.add(2);
+        list1.add(-3);
+        list1.add(4);
+        List<Integer> list2 = new ArrayList<>();
+        list1.add(4);
+        list1.add(-5);
+        list1.add(6);
+        list1.add(-7);
+
+        System.out.println(c(list1,list2));
+        System.out.println(concatPositiveNumbers(list1,list2));
     }
 }
