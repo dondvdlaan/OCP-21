@@ -1,19 +1,23 @@
 package dev.manyroads;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        List<Integer> l1 = new ArrayList<>();
-        l1.add(1);
-        l1.add(4);
-        List<Integer> l2 = new ArrayList<>();
-        l2.add(1);
-        l2.add(4);
-        for(Integer i: l1){
-            if(l2.contains(i)) System.out.println("Yahoo "+i);
-        }
+
+    public static void main(String[] x) {
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int c = scanner.nextInt();
+
+        double p = (a + b + c) / 2.0;
+        double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        System.out.println(s);
+
     }
+
+
 }
+
