@@ -1,4 +1,4 @@
-package dev.manyroads.maths;
+package dev.manyroads.maths.heron;
 
 
 import java.util.Scanner;

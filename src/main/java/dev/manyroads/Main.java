@@ -1,23 +1,29 @@
 package dev.manyroads;
 
 
-import java.util.Arrays;
-import java.util.Scanner;
+import org.sqlite.SQLiteDataSource;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+
+import static java.lang.Math.max;
 
 public class Main {
+    public static void main(String[] args) {
+        String url = "jdbc:sqlite:E:/temp/testdb.db";
 
-    public static void main(String[] x) {
-        Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
-        int b = scanner.nextInt();
-        int c = scanner.nextInt();
+        // to connect your Java applications and JDBC drivers
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl(url);
 
-        double p = (a + b + c) / 2.0;
-        double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
-        System.out.println(s);
-
+        // JDBC interface represents the connection with DBMS
+        try (Connection con = dataSource.getConnection()) {
+            if (con.isValid(5)) {
+                System.out.println("Connection is valid.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-
 }
-
