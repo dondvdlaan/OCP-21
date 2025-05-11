@@ -1,29 +1,42 @@
 package dev.manyroads;
 
 
-import org.sqlite.SQLiteDataSource;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-
-
-import static java.lang.Math.max;
+import java.util.Queue;
+import java.util.Scanner;
+import java.lang.String;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Main {
     public static void main(String[] args) {
-        String url = "jdbc:sqlite:E:/temp/testdb.db";
+        class ConcurrentQueueTest {
+            public static void main(String[] args) throws InterruptedException {
+                Queue<Integer> numbers = new ConcurrentLinkedQueue<>();
+                addNumbers(numbers);
 
-        // to connect your Java applications and JDBC drivers
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl(url);
+                Thread thread1 = new Thread(() -> pollNumbers(numbers));
+                Thread thread2 = new Thread(() -> pollNumbers(numbers));
 
-        // JDBC interface represents the connection with DBMS
-        try (Connection con = dataSource.getConnection()) {
-            if (con.isValid(5)) {
-                System.out.println("Connection is valid.");
+                thread1.start();
+                thread2.start();
+
+                thread1.join();
+                thread2.join();
+
+                System.out.println(numbers.size()); // ?
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+            private static void addNumbers(Queue<Integer> target) {
+                for (int i = 0; i < 100_000; i++) {
+                    target.add(i);
+                }
+            }
+
+            private static void pollNumbers(Queue<Integer> target) {
+                for (int i = 0; i < 50_000; i++) {
+                    target.poll();
+                }
+            }
         }
     }
 }
+
