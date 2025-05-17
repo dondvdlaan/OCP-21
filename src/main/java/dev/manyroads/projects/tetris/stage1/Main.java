@@ -1,9 +1,7 @@
-package dev.manyroads.projects.tetris;
+package dev.manyroads.projects.tetris.stage1;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {

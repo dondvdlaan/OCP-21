@@ -1,42 +1,27 @@
 package dev.manyroads;
 
 
-import java.util.Queue;
+import java.io.IOException;
 import java.util.Scanner;
-import java.lang.String;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Main {
-    public static void main(String[] args) {
-        class ConcurrentQueueTest {
-            public static void main(String[] args) throws InterruptedException {
-                Queue<Integer> numbers = new ConcurrentLinkedQueue<>();
-                addNumbers(numbers);
+    public static void main(String[] args) throws IOException {
+        System.out.println(!(false && true) || false);
+    }
 
-                Thread thread1 = new Thread(() -> pollNumbers(numbers));
-                Thread thread2 = new Thread(() -> pollNumbers(numbers));
-
-                thread1.start();
-                thread2.start();
-
-                thread1.join();
-                thread2.join();
-
-                System.out.println(numbers.size()); // ?
-            }
-
-            private static void addNumbers(Queue<Integer> target) {
-                for (int i = 0; i < 100_000; i++) {
-                    target.add(i);
-                }
-            }
-
-            private static void pollNumbers(Queue<Integer> target) {
-                for (int i = 0; i < 50_000; i++) {
-                    target.poll();
-                }
-            }
-        }
+    static Level getLevel(String selection) {
+        return switch (selection) {
+            case "severe" -> Level.SEVERE;
+            case "warning" -> Level.WARNING;
+            case "info" -> Level.INFO;
+            case "config" -> Level.CONFIG;
+            case "fine" -> Level.FINE;
+            case "finer" -> Level.FINER;
+            case "finest" -> Level.FINEST;
+            default -> null;
+        };
     }
 }
-

@@ -1,4 +1,4 @@
-package dev.manyroads.oncurrentinkedqueue;
+package dev.manyroads.concurrentinkedqueue;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
