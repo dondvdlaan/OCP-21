@@ -1,5 +1,4 @@
-package dev.manyroads;
-
+package dev.manyroads.localdate.leapyear;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -40,4 +39,3 @@ public class Main {
 //        System.out.println(isLeapYear);
 //    }
 }
-

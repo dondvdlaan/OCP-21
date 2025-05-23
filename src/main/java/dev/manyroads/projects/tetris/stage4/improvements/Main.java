@@ -1,4 +1,4 @@
-package dev.manyroads.projects.tetris.stage4;
+package dev.manyroads.projects.tetris.stage4.improvements;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,10 +55,16 @@ class Tetris extends Pieces {
                     if (!isSelectNextPiece) rotation = ++rotation >= piece.length ? 0 : rotation;
                 }
                 case "left", "l" -> {
-                    if (!isSelectNextPiece) horizontal--;
+                    if (!isSelectNextPiece) {
+                        direction = -1;
+                        horizontal += direction;
+                    }
                 }
                 case "right", "r" -> {
-                    if (!isSelectNextPiece) horizontal++;
+                    if (!isSelectNextPiece) {
+                        direction = 1;
+                        horizontal += direction;
+                    }
                 }
                 case "down", "d" -> {
                 }
@@ -67,7 +73,7 @@ class Tetris extends Pieces {
                     logger.log(Level.INFO, Arrays.toString(staticBoard));
                 }
                 case "exit", "e" -> System.exit(0);
-                default -> throw new IllegalArgumentException("Invalid piece type");
+                default -> System.out.println("Invalid piece type, try again");
             }
 
             if (pieceDoesNotFit()) {
@@ -90,29 +96,17 @@ class Tetris extends Pieces {
                 rotation = 0;
                 rowCounter = -1;
                 horizontal = 0;
+                direction = 0;
             }
             //if (isBottumReached) logger.log(Level.INFO, Arrays.toString(convertStringArrayToInteger(currentBoard)));
         }
     }
 
-    String[][] initialBoard(String[][] board, Integer[] piece) {
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[0].length; col++) {
-                for (int piecePos = 0; piecePos < piece.length; piecePos++) {
-                    if (piece[piecePos] != null && (col + row * cols == piece[piecePos])) {
-                        board[row][col] = "0";
-                    }
-                }
-            }
-        }
-        return board.clone();
-    }
-
     String[][] renderBoard(String[][] currentBoard) {
         String[][] newBoard = createBoard(cols, rows);
-        logger.log(Level.INFO, "staticBoard " + Arrays.toString(staticBoard));
-        logger.log(Level.INFO, "piece[rotation] " + Arrays.toString(piece[rotation]));
-        logger.log(Level.INFO, "rowCounter: " + rowCounter);
+//        logger.log(Level.INFO, "staticBoard " + Arrays.toString(staticBoard));
+//        logger.log(Level.INFO, "piece[rotation] " + Arrays.toString(piece[rotation]));
+//        logger.log(Level.INFO, "rowCounter: " + rowCounter);
 
         for (int row = 0; row < currentBoard.length; row++) {
             for (int col = 0; col < currentBoard[0].length; col++) {
@@ -154,10 +148,15 @@ class Tetris extends Pieces {
     int moveHorizontalWithRestrictions(int col) {
         int newCol = col + horizontal;
         if (isBottomOrOtherObjectTouched) {
-            logger.log(Level.INFO, "horizontal before: " +horizontal);
-            if (horizontal > 0) --horizontal;
-            else if (horizontal < 0) ++horizontal;
-            logger.log(Level.INFO, "horizontal after: " +horizontal);
+            logger.log(Level.INFO, "horizontal before: " + horizontal);
+            if (direction > 0) {
+                --horizontal;
+                direction = 0;
+            } else if (direction < 0) {
+                ++horizontal;
+                direction = 0;
+            }
+            logger.log(Level.INFO, "horizontal after: " + horizontal);
             return col + horizontal;
         }
         if (isLeftWallHit()) {
@@ -167,6 +166,7 @@ class Tetris extends Pieces {
             //horizontal--;
             return col + --horizontal;
         }
+        direction = 0;
         return newCol;
     }
 
@@ -192,13 +192,13 @@ class Tetris extends Pieces {
 
     Integer[][] selectPiece(String selection) {
         return switch (selection) {
-            case "O" -> O;
-            case "I" -> I;
-            case "S" -> S;
-            case "Z" -> Z;
-            case "L" -> L;
-            case "J" -> J;
-            case "T" -> T;
+            case "O", "o" -> O;
+            case "I", "i" -> I;
+            case "S", "s" -> S;
+            case "Z", "z" -> Z;
+            case "L", "l" -> L;
+            case "J", "j" -> J;
+            case "T", "t" -> T;
             default -> throw new IllegalArgumentException("Invalid piece type");
         };
     }
