@@ -27,17 +27,7 @@ public class Piece {
         this.currentRow++;
     }
 
-    public void setStateIndex(int stIn){
-        this.stateIndex = stIn;
-    }
 
-    public void setCurrentCol(int curCol){
-        this.currentCol = curCol;
-    }
-
-    public void setBottom(boolean bott){
-        this.bottom = bott;
-    }
 
     public Piece(String name, Integer[][] states){
         this.name = name;
