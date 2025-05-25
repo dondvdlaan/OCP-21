@@ -255,3 +255,39 @@ class test16{
             }
         }
     }
+    class test17{
+    // The sum of integers from a to b
+//    IntStream.rangeClosed(scanner.nextInt(), scanner.nextInt())
+//            .reduce(Integer::sum)
+//                .ifPresent(System.out::println);
+
+        // alternative
+//        int a = sc.nextInt();
+//        int b = sc.nextInt();
+//
+//        int ans = b*(b+1)/2 - a*(a-1)/2;
+//
+//        System.out.println(ans);
+    }
+    class Test18 {
+        /**
+         * calculates the sum of the elements of an array of ints
+         *
+         * @param args
+         */
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            int size = scanner.nextInt();
+            scanner.tokens().limit(size).mapToInt(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
+        }
+        // of..
+//        int size = scanner.nextInt();
+//        int[] ints = new int[size];
+//        ints = scanner.tokens().limit(size).mapToInt(Integer::parseInt).toArray();
+//        Arrays.stream(ints).reduce(Integer::sum).ifPresent(System.out::println);
+
+        // of
+//        int listSize = sc.nextInt();
+//        List<Integer> list = IntStream.range(0, listSize).mapToObj(i -> sc.nextInt()).toList();
+//            System.out.println(list.stream().mapToInt(Integer::intValue).sum());
+    }

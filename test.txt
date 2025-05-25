@@ -1,3 +1,0 @@
-start line
-line two
-end line
