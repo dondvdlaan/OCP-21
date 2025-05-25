@@ -2,7 +2,6 @@ package dev.manyroads.projects.tetris.stage4.improvements2;
 
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
