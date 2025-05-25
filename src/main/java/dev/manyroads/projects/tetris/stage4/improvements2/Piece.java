@@ -11,25 +11,13 @@ import java.util.List;
 public class Piece {
     private String name;
     private Integer[][] states;
-    private List <Integer> currentState;
+    private List<Integer> currentState;
     private int stateIndex;
     private int currentRow;
     private int currentCol;
     private boolean bottom;
 
-
-
-    public void setCurrentState(int i, Integer stateMember){
-        this.currentState.set(i, stateMember);
-    }
-
-    public void setCurrentRow(){
-        this.currentRow++;
-    }
-
-
-
-    public Piece(String name, Integer[][] states){
+    public Piece(String name, Integer[][] states) {
         this.name = name;
         this.states = states;
         this.currentState = Arrays.asList(Arrays.copyOf(states[0], 4));
@@ -39,5 +27,14 @@ public class Piece {
         this.bottom = false;
 
     }
+
+    public void setCurrentState(int i, Integer stateMember) {
+        this.currentState.set(i, stateMember);
+    }
+
+    public void setCurrentRow() {
+        this.currentRow++;
+    }
+
 
 }
