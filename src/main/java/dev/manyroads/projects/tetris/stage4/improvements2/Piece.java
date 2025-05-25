@@ -19,7 +19,8 @@ public class Piece {
 
 
 
-    public boolean getBottom(){
+
+    public boolean isBottom(){
         return this.bottom;
     }
 

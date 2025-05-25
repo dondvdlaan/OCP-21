@@ -34,7 +34,7 @@ public class Main extends Gear {
                 } else if (command.matches("break")) {
                     //System.out.println("breaking in Main");
                     grid.breakkkk();
-                } else if (grid.getPiece().getBottom()) {
+                } else if (grid.getPiece().isBottom()) {
                     grid.printGrid();
                     // System.out.println("piece bottom");
                 } else if (command.matches("down")) {
