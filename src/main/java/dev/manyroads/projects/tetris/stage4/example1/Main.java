@@ -1,7 +1,10 @@
 package dev.manyroads.projects.tetris.stage4.example1;
 
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 
@@ -26,10 +29,10 @@ public class Main {
         mapp.put("T", T);
 
 
-        int n = scanner.nextInt();
-        int m = scanner.nextInt();
+        int cols = scanner.nextInt();
+        int rows = scanner.nextInt();
 
-        Grid grid = new Grid(n, m);
+        Grid grid = new Grid(cols, rows);
         grid.printGrid();
 
         while(true){

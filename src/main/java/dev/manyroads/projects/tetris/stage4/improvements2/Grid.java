@@ -1,4 +1,4 @@
-package dev.manyroads.projects.tetris.stage4.example1;
+package dev.manyroads.projects.tetris.stage4.improvements2;
 
 
 import java.util.ArrayList;
@@ -9,16 +9,16 @@ import java.util.List;
 public class Grid {
     private final int cols;
     private final int rows;
-    private Position[][] grid;
+    private Field[][] grid;
     private Piece piece;
 
     public Grid(int cols, int rows) {
         this.cols = cols;
         this.rows = rows;
-        this.grid = new Position[rows][cols];
+        this.grid = new Field[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                grid[i][j] = new Position(i, j, PositionStatus.FREE);
+                grid[i][j] = new Field(i, j, FieldStatus.FREE);
             }
         }
     }
@@ -31,7 +31,7 @@ public class Grid {
         this.piece = piece;
     }
 
-    public void setGrid(Position[][] grid) {
+    public void setGrid(Field[][] grid) {
         this.grid = grid;
     }
 
@@ -46,7 +46,7 @@ public class Grid {
                         sCount++;
                     }
                 } else {
-                    System.out.print(grid[row][col].getStatus().getSign() + " ");
+                    System.out.print(grid[row][col].getFieldStatus().getSymbol() + " ");
                 }
 
             }
@@ -58,13 +58,12 @@ public class Grid {
     public void printGrid() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                System.out.print(grid[i][j].getStatus().getSign() + " ");
+                System.out.print(grid[i][j].getFieldStatus().getSymbol() + " ");
             }
             System.out.println();
         }
         System.out.println();
     }
-
 
     public List<Integer> down() {
         for (int i = 0; i < piece.getCurrentState().size(); i++) {
@@ -169,7 +168,7 @@ public class Grid {
             for (Integer state : piece.getCurrentState()) {
                 int i = state / cols;
                 int j = state % cols;
-                if (grid[i + 1][j].getStatus() == PositionStatus.TAKEN) {
+                if (grid[i + 1][j].getFieldStatus() == FieldStatus.TAKEN) {
                     piece.setBottom(true);
                     updateGrid();
                     break;
@@ -184,7 +183,7 @@ public class Grid {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (this.piece.getCurrentState().get(sCount) == (i * cols + j)) {
-                    this.grid[i][j].setStatus(PositionStatus.TAKEN);
+                    this.grid[i][j].setFieldStatus(FieldStatus.TAKEN);
                     if (sCount < 3) {
                         sCount++;
                     }
@@ -199,7 +198,7 @@ public class Grid {
         for (int i = 0; i < rows; i++) {
             boolean rowFull = true;
             for (int j = 0; j < cols; j++) {
-                if (grid[i][j].getStatus() == PositionStatus.FREE) {
+                if (grid[i][j].getFieldStatus() == FieldStatus.FREE) {
                     rowFull = false;
                     break;
                 }
@@ -209,7 +208,7 @@ public class Grid {
             }
         }
 
-        List<Position[]> listOfRows = new ArrayList<>();
+        List<Field[]> listOfRows = new ArrayList<>();
         for (int i = 0; i < rows; i++) {
             listOfRows.add(grid[i]);
         }
@@ -219,19 +218,19 @@ public class Grid {
             listOfRows.remove(index.intValue());
         }
 
-        Position[][] newGr = new Position[rows][cols];
+        Field[][] newGr = new Field[rows][cols];
         for (int i = 0; i < indexesOfFullRows.size(); i++) {
             for (int j = 0; j < cols; j++) {
-                newGr[i][j] = new Position(i, j, PositionStatus.FREE);
+                newGr[i][j] = new Field(i, j, FieldStatus.FREE);
             }
         }
 
         for (int i = 0; i < listOfRows.size(); i++) {
             for (int j = 0; j < cols; j++) {
-                if (listOfRows.get(i)[j].getStatus() == PositionStatus.TAKEN) {
-                    newGr[i + indexesOfFullRows.size()][j] = new Position(i + indexesOfFullRows.size(), j, PositionStatus.TAKEN);
+                if (listOfRows.get(i)[j].getFieldStatus() == FieldStatus.TAKEN) {
+                    newGr[i + indexesOfFullRows.size()][j] = new Field(i + indexesOfFullRows.size(), j, FieldStatus.TAKEN);
                 } else {
-                    newGr[i + indexesOfFullRows.size()][j] = new Position(i + indexesOfFullRows.size(), j, PositionStatus.FREE);
+                    newGr[i + indexesOfFullRows.size()][j] = new Field(i + indexesOfFullRows.size(), j, FieldStatus.FREE);
                 }
             }
         }
@@ -245,7 +244,7 @@ public class Grid {
         for (int j = 0; j < cols; j++) {
             boolean colFilled = true;
             for (int i = 0; i < rows; i++) {
-                if (grid[i][j].getStatus() == PositionStatus.FREE) {
+                if (grid[i][j].getFieldStatus() == FieldStatus.FREE) {
                     colFilled = false;
                 }
             }
