@@ -17,30 +17,7 @@ public class Piece {
     private int currentCol;
     private boolean bottom;
 
-    public Integer[][] getStates(){
-        return this.states;
-    }
 
-    public List<Integer> getCurrentState(){
-        return this.currentState;
-    }
-
-    public int getStateIndex(){
-        return this.stateIndex;
-    }
-
-    public int getCurrentRow(){
-        return this.currentRow;
-    }
-
-    public int getCurrentCol(){
-        return this.currentCol;
-    }
-
-
-    public boolean isBottom(){
-        return this.bottom;
-    }
 
     public void setCurrentState(int i, Integer stateMember){
         this.currentState.set(i, stateMember);
