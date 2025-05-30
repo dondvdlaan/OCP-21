@@ -1,4 +1,4 @@
-package dev.manyroads.Recursion;
+package dev.manyroads.recursion;
 
 public class Main {
 

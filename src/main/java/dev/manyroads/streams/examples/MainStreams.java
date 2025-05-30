@@ -1,10 +1,9 @@
 package dev.manyroads.streams.examples;
 
-import dev.manyroads.Main;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -290,4 +289,43 @@ class test16{
 //        int listSize = sc.nextInt();
 //        List<Integer> list = IntStream.range(0, listSize).mapToObj(i -> sc.nextInt()).toList();
 //            System.out.println(list.stream().mapToInt(Integer::intValue).sum());
+    }
+    class Test19{
+//        RegistrerenAbonnement registrerenAbonnement = new RegistrerenAbonnement();
+//        cjibNummers.forEach(cjibNummer -> {
+//            registrerenAbonnement.getAbonnementDTO().add(maakAbonnementDto(cjibNummer));
+//        });
+    }
+
+    class Test20{
+        public static final TernaryIntPredicate ALL_DIFFERENT = numbers ->
+                IntStream.of(numbers).distinct().count() == numbers.length;
+
+        @FunctionalInterface
+        public interface TernaryIntPredicate {
+            boolean test(int... numbers);
+        }
+    }
+    class Test21{
+    // print longest word
+//        var words = new Scanner(System.in).tokens()
+//                .sorted(Comparator.comparing(String::length).reversed()).toArray();
+//        System.out.print(words[0]);
+//        - longest word in sentence
+//        Scanner scanner = new Scanner(System.in);
+//        String sentence = scanner.nextLine();
+//
+//        String longest = Arrays.stream(sentence.split(" "))
+//                .max(Comparator.comparingInt(String::length)).get();
+//        System.out.println(longest);
+//
+//- or
+//        public static void main(String[] args) {
+//            var words = new Scanner(System.in).tokens()
+//                    .sorted(Comparator.comparing(String::length).reversed()).toArray();
+//            System.out.print(words[0]);
+//        }
+//           System.out.println(words[index]);
+//        var l = Stream.of(words).max(Comparator.comparing(String::length)).orElse("");
+//            System.out.println(l);
     }
