@@ -2,7 +2,6 @@ package dev.manyroads.projects.tetris.stage4.improvements2;
 
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -35,7 +34,7 @@ public class Main extends Gear {
                 } else if (command.matches("break")) {
                     //System.out.println("breaking in Main");
                     grid.breakkkk();
-                } else if (grid.getPiece().getBottom()) {
+                } else if (grid.getPiece().isBottom()) {
                     grid.printGrid();
                     // System.out.println("piece bottom");
                 } else if (command.matches("down")) {

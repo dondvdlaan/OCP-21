@@ -150,7 +150,7 @@ public class Grid {
     }
 
     public void isDown() {
-        if (!piece.getBottom()) {
+        if (!piece.isBottom()) {
             for (Integer state : piece.getCurrentState()) {
                 String stateString = String.valueOf(state);
                 if (stateString.length() > 1 && ("" + stateString.charAt(0)).equals(String.valueOf(rows - 1))) {
@@ -164,7 +164,7 @@ public class Grid {
 
     //isPieceTouching down border or some other piece
     public void isTouchingAnotherPiece() {
-        if (!piece.getBottom()) {
+        if (!piece.isBottom()) {
             for (Integer state : piece.getCurrentState()) {
                 int i = state / cols;
                 int j = state % cols;
