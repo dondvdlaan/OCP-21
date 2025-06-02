@@ -1,2 +1,1 @@
-first
-second
+Lorem dolor sit ipsum
