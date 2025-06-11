@@ -11,14 +11,14 @@ public class TestSwitch {
     }
 
     static void switchje(Object o) {
-
-        switch (o) {
-            case Integer i when i > 0 -> System.out.println("groter dna 0: " + i);
-            case Integer i when i < 0 -> System.out.println("kleiner dna 0" + i);
-            case String s -> System.out.println("stingetje: " + s);
-            case Dieren.HOND -> System.out.println("Hondhe");
-            case null, default -> System.out.println("geen keuze");
-        }
+//
+//        switch (o) {
+//            case Integer i when i > 0 -> System.out.println("groter dna 0: " + i);
+//            case Integer i when i < 0 -> System.out.println("kleiner dna 0" + i);
+//            case String s -> System.out.println("stingetje: " + s);
+//            case Dieren.HOND -> System.out.println("Hondhe");
+//            case null, default -> System.out.println("geen keuze");
+//        }
     }
 
     enum Day {

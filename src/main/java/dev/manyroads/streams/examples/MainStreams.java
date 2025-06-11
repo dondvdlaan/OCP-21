@@ -1,13 +1,19 @@
 package dev.manyroads.streams.examples;
 
+
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -186,7 +192,7 @@ class test11 {
     }
 }
 
-class test12{
+class test12 {
     public static void main(String[] args) {
 //        Integer[] temp2 = temp.stream()
 //                .map(i -> {
@@ -196,16 +202,16 @@ class test12{
     }
 }
 
-class test13{
+class test13 {
     public static String getDayOfWeekName(int number) {
-        return Map.of(1, "Mon", 2,  "Tue", 3,  "Wed", 4,  "Thu", 5,  "Fri", 6, "Sat", 7, "Sun").entrySet().stream()
+        return Map.of(1, "Mon", 2, "Tue", 3, "Wed", 4, "Thu", 5, "Fri", 6, "Sat", 7, "Sun").entrySet().stream()
                 .filter(e -> e.getKey() == number)
                 .map(Map.Entry::getValue)
                 .findAny().orElseThrow(IllegalArgumentException::new);
     }
 }
 
-class test14{
+class test14 {
     enum Day {
         Mon(1), Tue(2), Wed(3), Thu(4), Fri(5), Sat(6), Sun(7);
 
@@ -225,7 +231,7 @@ class test14{
     }
 }
 
-class test15{
+class test15 {
 //    var scanner = new Scanner(System.in);
 //    var date = LocalDate.parse(scanner.nextLine());
 //    int offset = scanner.nextInt();
@@ -235,7 +241,7 @@ class test15{
 //            .forEach(System.out::println);
 }
 
-class test16{
+class test16 {
 
 
     class Main {
@@ -251,62 +257,66 @@ class test16{
 //            while (date.getMonthValue() == month) {
 //                System.out.println(date);
 //                date = date.plusDays(DAYS_PER_WEEK);
-            }
         }
     }
-    class test17{
+}
+
+class test17 {
     // The sum of integers from a to b
 //    IntStream.rangeClosed(scanner.nextInt(), scanner.nextInt())
 //            .reduce(Integer::sum)
 //                .ifPresent(System.out::println);
 
-        // alternative
+    // alternative
 //        int a = sc.nextInt();
 //        int b = sc.nextInt();
 //
 //        int ans = b*(b+1)/2 - a*(a-1)/2;
 //
 //        System.out.println(ans);
+}
+
+class Test18 {
+    /**
+     * calculates the sum of the elements of an array of ints
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int size = scanner.nextInt();
+        scanner.tokens().limit(size).mapToInt(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
     }
-    class Test18 {
-        /**
-         * calculates the sum of the elements of an array of ints
-         *
-         * @param args
-         */
-        public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
-            int size = scanner.nextInt();
-            scanner.tokens().limit(size).mapToInt(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
-        }
-        // of..
+    // of..
 //        int size = scanner.nextInt();
 //        int[] ints = new int[size];
 //        ints = scanner.tokens().limit(size).mapToInt(Integer::parseInt).toArray();
 //        Arrays.stream(ints).reduce(Integer::sum).ifPresent(System.out::println);
 
-        // of
+    // of
 //        int listSize = sc.nextInt();
 //        List<Integer> list = IntStream.range(0, listSize).mapToObj(i -> sc.nextInt()).toList();
 //            System.out.println(list.stream().mapToInt(Integer::intValue).sum());
-    }
-    class Test19{
+}
+
+class Test19 {
 //        RegistrerenAbonnement registrerenAbonnement = new RegistrerenAbonnement();
 //        cjibNummers.forEach(cjibNummer -> {
 //            registrerenAbonnement.getAbonnementDTO().add(maakAbonnementDto(cjibNummer));
 //        });
-    }
+}
 
-    class Test20{
-        public static final TernaryIntPredicate ALL_DIFFERENT = numbers ->
-                IntStream.of(numbers).distinct().count() == numbers.length;
+class Test20 {
+    public static final TernaryIntPredicate ALL_DIFFERENT = numbers ->
+            IntStream.of(numbers).distinct().count() == numbers.length;
 
-        @FunctionalInterface
-        public interface TernaryIntPredicate {
-            boolean test(int... numbers);
-        }
+    @FunctionalInterface
+    public interface TernaryIntPredicate {
+        boolean test(int... numbers);
     }
-    class Test21{
+}
+
+class Test21 {
     // print longest word
 //        var words = new Scanner(System.in).tokens()
 //                .sorted(Comparator.comparing(String::length).reversed()).toArray();
@@ -328,4 +338,156 @@ class test16{
 //           System.out.println(words[index]);
 //        var l = Stream.of(words).max(Comparator.comparing(String::length)).orElse("");
 //            System.out.println(l);
+}
+
+class Test22 {
+    // see project BudgetManager stage 5
+//    List<Product> sortedProducts = products.stream()
+//            .filter(p -> p.category == category)
+//            .sorted(Comparator.comparing(Product::getPrice).reversed())
+//            .toList();
+//    Map<Category, Double> mapCatTot = new HashMap<>();
+//
+//        for (Category cat : Category.values()) {
+//        double tot = products.stream()
+//                .filter(p -> p.getCategory() == cat)
+//                .map(Product::getPrice)
+//                .reduce(Double::sum).orElse(0D);
+//        mapCatTot.put(cat, tot);
+//    }
+//        System.out.println("Types:");
+//        mapCatTot.entrySet().stream()
+//                .filter(m -> m.getKey() != Category.ALL)
+//            .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+//            .forEach(m -> System.out.printf("%s - $%.2f\n", m.getKey(), m.getValue()));
+
+//    Comparator<Product> comparePrices = (p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice());
+//    List<Product> sortedProducts = products.stream()
+//            .sorted(comparePrices).toList().reversed();
+//    //.sorted(Comparator.comparingDouble(Product::getPrice)).toList().reversed();
+//
+//    Predicate<Product> checkPurchaseCat = p -> category == Category.ALL || p.getCategory() == category;
+//
+//        if (getProducts().isPresent()) {
+//        List<Product> productList = getProducts().get().stream().filter(checkPurchaseCat).toList();
+
+//    static void printTotal(List<Product> products) {
+//        double tot = products.stream().map(Product::getPrice).reduce(Double::sum).orElse(0D);
+//        System.out.printf("Total sum: $%.2f\n\n", tot);
+//    }
+
+}
+
+class Test23 {
+//    Shape[] shapes = {new Shape2D(), new Shape3D(), new Circle(), new Circle2(), new Cube2()};
+//    int c = 0;
+//        for (Shape s : shapes) {
+//        if (s instanceof Shape2D shp) {
+//            if (shp.getClass() != Shape2D.class) ++c;
+//        }
+//    }
+//        System.out.println(c);
+//        System.out.println(Arrays
+//                .stream(shapes)
+//            .filter(s -> (s instanceof Shape2D) && (s.getClass() != Shape2D.class))
+//            .mapToInt(e -> 1)
+//            .reduce(0, (a, b) -> a + b));
+//    //.reduce(0, Integer::sum));
+//
+//    // .count());
+}
+
+class Test24 {
+//    Shape[] array = {new Shape(),new Rectangle(12, 2), new Square(10)};
+//        System.out.println(Arrays.stream(array)
+//            .map(Shape::getArea)
+//                .reduce((a, b) -> a + b)
+//            .map(d -> (int) d)
+//            .orElse(0));
+
+//    public static void main(String[] args) {
+//        Rectangle rec =new Rectangle();
+//        rec.setHeight(10);
+//        rec.setWidth(10);
+//        Square sq =new Square();
+//        sq.setSide(10);
+//        Shape[] array = {new Shape(), rec,sq};
+//        System.out.println(Arrays.stream(array)
+//                .map(s ->
+//                        s.getClass() == Rectangle.class ? ((Rectangle) s).getWidth() * ((Rectangle) s).getHeight() :
+//                                s.getClass() == Square.class ? ((Square) s).getSide() * ((Square) s).getSide() : 0
+//                )
+//                .reduce((a, b) -> a + b)
+//                .orElse(0));
+//    }
+}
+
+/**
+ * Retuen object at ened of strean
+ */
+class Test25 {
+//    public FlightInfo getFlightInfo(@PathVariable int id) {
+//        return flightInfoList.stream().filter(f->f.getId()==id).findFirst().orElse(null);
+}
+
+class Test26 {
+    public static void main(String[] args) {
+        new Scanner(System.in)
+                .tokens()
+                .collect(Collectors.toCollection(ArrayDeque::new))
+                .descendingIterator()
+                .forEachRemaining(System.out::println);
     }
+}
+class Test27{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> arrayNameGuests = new ArrayList<>();
+        while (scanner.hasNext()) {
+            arrayNameGuests.add(scanner.next());
+        }
+
+        Collections.reverse(arrayNameGuests);
+        arrayNameGuests.forEach(System.out::println);
+    }
+}
+
+class Test28{
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            Integer[] intArray = Arrays.stream(sc.next().split("-")).map(Integer::parseInt).toArray(Integer[]::new);
+            System.out.println(LocalDate.of(intArray[0],intArray[1],intArray[2]).minusDays(10));
+        }
+        System.out.println(
+                LocalDate
+                        .parse(new Scanner(System.in).nextLine())
+                        .minusDays(10));
+    }
+}
+
+class Test29{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int momentOne = IntStream.builder()
+                .add(scanner.nextInt() * 60 * 60)
+                .add(scanner.nextInt() * 60)
+                .add(scanner.nextInt())
+                .build()
+                .sum();
+
+        int momentTwo = IntStream.builder()
+                .add(scanner.nextInt() * 60 * 60)
+                .add(scanner.nextInt() * 60)
+                .add(scanner.nextInt())
+                .build()
+                .sum();
+
+        System.out.println(momentTwo - momentOne);
+    }
+}
+class Test30{
+//    public Seat[] getAvailableSeats() {
+//        return Arrays.stream(seats).filter(Seat::isAvailable).toArray(Seat[]::new);
+//    }
+}
